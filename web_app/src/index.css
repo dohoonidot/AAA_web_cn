@@ -1,0 +1,198 @@
+/* Spoqa Han Sans Neo 폰트 로드 */
+@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css');
+
+:root {
+  font-family: 'Spoqa Han Sans Neo', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #213547;
+  background-color: #f5f5f5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 모바일 최적화 */
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Safe Area Insets for modern mobile devices (iPhone Notch/Home Bar) */
+  --sat: env(safe-area-inset-top);
+  --sar: env(safe-area-inset-right);
+  --sab: env(safe-area-inset-bottom);
+  --sal: env(safe-area-inset-left);
+
+  /* 키보드 열림 시 safe-area-bottom 무시 (JS가 동적으로 설정) */
+  --effective-sab: env(safe-area-inset-bottom);
+  --is-keyboard-open: 0;
+  /* 하단 브라우저 UI (주소창/툴바) 높이 - iOS Safari 탭바 모드, Chrome/Firefox 툴바 등 */
+  --browser-bottom-bar: 0px;
+
+  /* App-like viewport sizing (JS sets --app-height / --vh) */
+  --app-height: 100dvh;
+  --app-width: 100vw;
+  --keyboard-height: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  /* 모바일 스크롤 최적화 */
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* 모바일: dvh 사용 (브라우저 UI 제외한 실제 높이) */
+  min-height: var(--app-height);
+  min-height: 100dvh;
+  min-height: 100vh;
+  /* dvh 미지원 브라우저 폴백 */
+  min-width: 320px;
+  background-color: #f5f5f5;
+  /* 모바일에서 스크롤 부드럽게 */
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: var(--app-height);
+  min-height: 100dvh;
+  min-height: 100vh;
+  /* fallback */
+  width: 100%;
+}
+
+/* ============================================================
+   모바일 Safe Area / Viewport 유틸리티
+   iOS: 노치/홈 인디케이터, Android: 제스처 네비게이션 바
+   ============================================================ */
+
+/* position:fixed 하단 버튼/바에 safe-area padding 추가 */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: max(env(safe-area-inset-bottom), 8px);
+}
+
+/* MUI Dialog 모바일 fullscreen 시 safe-area 처리 */
+@media screen and (max-width: 900px) {
+
+  /* fullScreen Dialog의 푸터 영역 자동 safe-area 패딩 */
+  .MuiDialog-paperFullScreen>.MuiBox-root:last-child,
+  .MuiDialog-paperFullScreen>div:last-child {
+    padding-bottom: max(env(safe-area-inset-bottom), 8px);
+  }
+
+  /* MUI Drawer (사이드메뉴) 하단 safe-area */
+  .MuiDrawer-paper {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+}
+
+/* 모바일 터치 최적화 */
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* 모바일에서 텍스트 선택 방지 */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 모바일 스크롤바 숨기기 */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* 모바일에서 입력 필드 줌 방지 */
+@media screen and (max-width: 900px) {
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* 모바일 뷰포트 최적화 */
+@media screen and (max-width: 900px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* 모바일에서 터치 영역 최소화 */
+@media screen and (max-width: 900px) {
+
+  button,
+  .MuiButton-root {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+
+  .MuiIconButton-root {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+}
+
+/* 모바일에서 카드 간격 조정 */
+@media screen and (max-width: 900px) {
+  .mobile-spacing {
+    padding: 16px !important;
+  }
+
+  .mobile-margin {
+    margin: 8px !important;
+  }
+}
+
+/* 모바일에서 텍스트 크기 조정 */
+@media screen and (max-width: 900px) {
+  .mobile-text-sm {
+    font-size: 0.875rem !important;
+  }
+
+  .mobile-text-xs {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* 모바일에서 그림자 효과 최적화 */
+@media screen and (max-width: 900px) {
+  .mobile-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* 모바일에서 애니메이션 최적화 */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-transition {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+/* 모바일에서 포커스 표시 최적화 */
+@media screen and (max-width: 900px) {
+  *:focus {
+    outline: 2px solid #1D4487;
+    outline-offset: 2px;
+  }
+}
