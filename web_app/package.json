@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/kill-port.cjs 5173",
-    "dev": "vite --port 5173 --strictPort",
+    "predev": "node scripts/kill-port.cjs 5273",
+    "dev": "vite --port 5273 --strictPort",
     "prebuild": "node scripts/sync-env.cjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",

@@ -30,17 +30,15 @@ try {
   console.log(`📋 IS_PRODUCTION = ${isProduction}`);
   console.log(`📋 환경: ${isProduction ? '프로덕션 (배포용)' : '개발 (Dev)'}`);
 
-  // 3. API URL 결정
-  const apiUrl = isProduction
-    ? 'https://ai2great.com:8080'  // 프로덕션
-    : 'https://ai2great.com:8060'; // 개발
+  // 3. 중국지사용 API URL 결정
+  const apiUrl = process.env.VITE_API_URL || 'https://localhost:8180';
 
   console.log(`📋 API URL: ${apiUrl}`);
 
   // 4. .env 파일 생성
   const envContent = `# API 서버 URL (자동 생성됨 - env.config.ts의 IS_PRODUCTION=${isProduction})
-# 개발 환경: https://ai2great.com:8060
-# 프로덕션 환경: https://ai2great.com:8080
+# 중국지사용 기본 API: https://localhost:8180
+# 실제 서버 도메인이 있으면 빌드 전에 VITE_API_URL로 덮어쓰세요.
 VITE_API_URL=${apiUrl}
 
 # 앱 정보

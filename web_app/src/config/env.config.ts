@@ -1,9 +1,9 @@
 /**
  * 배포 환경 설정
  *
- * 이 파일의 IS_PRODUCTION 값만 변경하면 모든 것이 자동으로 바뀝니다:
- * - true: 배포용 (8080 포트, 로그 제거)
- * - false: 개발용 (8060 포트, 로그 출력)
+ * 중국지사용 설정:
+ * - API는 개발/운영 구분 없이 8180 단일 포트 사용
+ * - 필요 시 VITE_API_URL로 호스트/도메인만 덮어쓸 수 있습니다.
  */
 
 // ============================================
@@ -11,12 +11,7 @@
 // ============================================
 export const IS_PRODUCTION = false;
 
-// ============================================
-// 🔐 웹 전용 로그인(로그인/리프레시/로그아웃) 8080 적용 여부
-// - true: 8080으로 호출 (구현 완료)
-// - false: 8060으로 호출 (8080 구현되면 true로 변경 예정)
-// ============================================
-export const WEB_AUTH_8080_READY = IS_PRODUCTION;
+export const WEB_AUTH_8080_READY = true;
 
 // ============================================
 // 📋 전자결재 결재종류 제한 설정
@@ -33,15 +28,14 @@ export const LIMIT_APPROVAL_TYPE = IS_PRODUCTION;
 export const IS_LOGGER_READY = IS_PRODUCTION;
 
 
-// API URL (자동 결정)
-export const API_BASE_URL = IS_PRODUCTION
-  ? 'https://ai2great.com:8080'  // 배포용
-  : 'https://ai2great.com:8060'; // 개발용
+const DEFAULT_API_BASE_URL = 'https://211.43.205.49:8180';
 
-// 웹 전용 로그인 API URL (8080 구현 완료 여부에 따라 분기)
-export const WEB_AUTH_API_BASE_URL = IS_PRODUCTION
-  ? 'https://ai2great.com:8080'  // 배포용
-  : 'https://ai2great.com:8060'; // 개발용
+// API URL (중국지사 단일 API: 8180)
+export const API_BASE_URL =
+  (import.meta.env.VITE_API_URL as string | undefined) || DEFAULT_API_BASE_URL;
+
+// 웹 전용 로그인 API URL도 동일 서버 사용
+export const WEB_AUTH_API_BASE_URL = API_BASE_URL;
 
 // 환경 정보
 export const ENV_CONFIG = {

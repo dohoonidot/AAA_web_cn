@@ -4,14 +4,10 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  // API 서버 URL (개발: 8060, 프로덕션: 8080)
-  // npm run dev         → mode=development → 8060
-  // npm run build:dev   → mode=development → 8060
-  // npm run build       → mode=production  → 8080
+  // 중국지사용 API 서버 URL
+  // 개발/운영 분리 없이 8180 단일 포트 사용
   const API_TARGET = process.env.VITE_API_URL ||
-    (mode === 'development'
-      ? 'https://ai2great.com:8060'
-      : 'https://ai2great.com:8080');
+    'https://localhost:8180';
 
   console.log(`🔧 [Vite Config] mode=${mode}, API Target: ${API_TARGET}`);
 
@@ -33,13 +29,13 @@ export default defineConfig(({ mode }) => {
     ],
   },
   server: {
-    port: 5173,
+    port: 5273,
     strictPort: true,
     host: true,
     open: true, // 브라우저 자동 열기
     hmr: {
-      port: 5173,
-      clientPort: 5173,
+      port: 5273,
+      clientPort: 5273,
       host: 'localhost',
     },
     // SPA 라우팅을 위한 설정
