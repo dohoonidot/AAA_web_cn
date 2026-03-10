@@ -35,7 +35,7 @@ export const API_BASE_URL =
   (import.meta.env.VITE_API_URL as string | undefined) || DEFAULT_API_BASE_URL;
 
 // 웹 전용 로그인 API URL도 동일 서버 사용
-export const WEB_AUTH_API_BASE_URL = API_BASE_URL;
+export const WEB_AUTH_API_BASE_URL = DEFAULT_API_BASE_URL;
 
 // 환경 정보
 export const ENV_CONFIG = {
