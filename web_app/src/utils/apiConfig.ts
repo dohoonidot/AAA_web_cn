@@ -11,8 +11,6 @@
 import {
   API_BASE_URL,
   IS_PRODUCTION,
-  WEB_AUTH_API_BASE_URL,
-  WEB_AUTH_8080_READY,
 } from '../config/env.config';
 import { logger } from './logger';
 
@@ -20,8 +18,6 @@ import { logger } from './logger';
 export {
   API_BASE_URL,
   IS_PRODUCTION,
-  WEB_AUTH_API_BASE_URL,
-  WEB_AUTH_8080_READY,
 };
 
 // WebSocket URL (API URL과 동일한 포트 사용)
